@@ -10,7 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", (_, res) => res.send("API is online"));
+app.get("/", (_, res) => res.send("API is online 🚀"));
 
 app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerSetup));
 app.use("/api/v1", loadModules());
