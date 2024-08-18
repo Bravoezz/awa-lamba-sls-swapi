@@ -1,0 +1,35 @@
+{
+  "name": "swapi-challenge",
+  "version": "1.0.1",
+  "author": "bravo brayan - bravoezz315@gmail.com",
+  "description": "api serverless with aws lamba and dynamo db - deployed with serverless framework",
+  "scripts": {
+    "test": "jest",
+    "deploy": "serverless deploy --verbose",
+    "reset": "serverless remove && npm run deploy"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.496.0",
+    "@aws-sdk/lib-dynamodb": "^3.496.0",
+    "axios": "^1.6.5",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "reflect-metadata": "^0.2.1",
+    "serverless-http": "^3.1.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "ts-node": "^10.9.2",
+    "tsyringe": "^4.8.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.5",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.6",
+    "jest": "^29.7.0",
+    "serverless-plugin-typescript": "^2.1.5",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,49 @@
+service: swapi-challenge
+frameworkVersion: '3'
+
+custom:
+  table1: 'characters'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+          Resource:
+            - Fn::GetAtt: [ CharactersTable, Arn ]
+  environment:
+    CHARACTERS_TABLE: ${self:custom.table1}
+    API_URL: !GetAtt HttpApi.ApiEndpoint
+
+functions:
+  api:
+    handler: src/app.server
+    events:
+      - httpApi: '*'
+
+plugins:
+  - serverless-plugin-typescript
+
+resources:
+  Resources:
+    CharactersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        TableName: ${self:custom.table1}
